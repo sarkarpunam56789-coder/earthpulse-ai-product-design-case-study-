@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EarthPulse AI: UX/UI case study</title>
+  <meta name="description" content="A UX/UI case study for EarthPulse AI, a personal sustainability platform for India." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Junge&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="hero">
+  <div class="wrap">
+    <p class="kicker">UX/UI case study</p>
+    <h1>EarthPulse AI</h1>
+    <p class="lead">A personal sustainability platform for people in India. This case study covers the problem, the research plan, the strategy and the design, and is honest about what is still unproven.</p>
+    <dl class="meta">
+      <!-- EDIT these three lines -->
+      <div><dt>Role</dt><dd>Product designer (add your name and role)</dd></div>
+      <div><dt>Timeline</dt><dd>Add your dates</dd></div>
+      <div><dt>Tools</dt><dd>Figma, React, Claude (AI assistant)</dd></div>
+    </dl>
+    <p class="links">
+      <a class="btn" href="https://earthpulse-ai-self.vercel.app/" target="_blank" rel="noopener">Open the live product</a>
+      <a class="btn ghost" href="#problem">Start reading</a>
+    </p>
+  </div>
+</header>
+
+<nav class="topnav" aria-label="Case study sections">
+  <ul>
+    <li><a href="#problem">1 Problem</a></li>
+    <li><a href="#constraints">2 Constraints</a></li>
+    <li><a href="#research">3 Research</a></li>
+    <li><a href="#strategy">4 Strategy</a></li>
+    <li><a href="#exploration">5 Exploration</a></li>
+    <li><a href="#design-system">6 Design system</a></li>
+    <li><a href="#flows">7 Flows</a></li>
+    <li><a href="#impact">8 Impact</a></li>
+    <li><a href="#solution">9 Solution</a></li>
+  </ul>
+</nav>
+
+<main>
+
+<section class="wrap note">
+  <p><strong>How this was made.</strong> The first working version of EarthPulse AI was generated with an AI assistant (Claude) from written briefs. This case study starts with a critical review of that version. <em>(Edit this note so it says exactly what you did.)</em></p>
+  <p><strong>How to read the labels.</strong>
+    <span class="tag assumption">Assumption</span> believed, not tested ·
+    <span class="tag review">Product review</span> found by inspecting the product ·
+    <span class="tag planned">Planned</span> not done yet ·
+    <span class="tag expected">Expected</span> a hope, not a result ·
+    <span class="tag built">Built</span> exists in the product.
+    Nothing here comes from user research or testing, because none has been done yet.</p>
+</section>
+
+<!-- ============ 1 PROBLEM FRAMING ============ -->
+<section id="problem" class="block">
+  <div class="wrap">
+    <p class="num">01</p>
+    <h2>Problem framing</h2>
+    <p class="lead">People who want to live more sustainably struggle to see which of their habits matter, and what to change first.</p>
+
+    <h3>Problem statement <span class="tag assumption">Assumption</span></h3>
+    <blockquote>Urban adults in India who want to live more sustainably have no quick, trustworthy way to see which of their everyday habits matter most, or to turn that knowledge into small changes they can keep.</blockquote>
+
+    <div class="cols">
+      <div>
+        <h3>Pain points <span class="tag assumption">Assumption</span></h3>
+        <ul>
+          <li>I don’t know which of my habits has the biggest effect.</li>
+          <li>Tracking everything is tedious, so I stop.</li>
+          <li>Advice is vague. I don’t know what to do first.</li>
+          <li>I can’t tell whether to trust a number I can’t check.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Problems in the first version <span class="tag review">Product review</span></h3>
+        <ul>
+          <li>Onboarding asks about a dozen things the product never uses.</li>
+          <li>New users don’t get a personal result at the end of setup.</li>
+          <li>Sample data and a user’s own entries are added together.</li>
+          <li>The sample day contains 17 entries, which is a lot to log by hand.</li>
+          <li>Goals, plans and recommendations are spread over six screens.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>How might we…</h3>
+    <ul>
+      <li>…show a new person a believable first estimate within minutes?</li>
+      <li>…make recording everyday activity take seconds?</li>
+      <li>…help people understand, and sensibly trust, an estimate they can’t verify?</li>
+      <li>…turn an insight into one small action that fits this person’s week?</li>
+    </ul>
+
+    <figure>
+      <img src="images/01-problem.png" alt="Problem framing visual" loading="lazy" />
+      <figcaption>Problem framing board</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 2 SYSTEM CONSTRAINTS ============ -->
+<section id="constraints" class="block alt">
+  <div class="wrap">
+    <p class="num">02</p>
+    <h2>System constraints</h2>
+    <p class="lead">What the product can and can’t do today, and the trade-offs that follow.</p>
+
+    <div class="cols cols-2">
+      <div class="card"><h3>Technical</h3><ul>
+        <li>Front-end only: no server, no database</li>
+        <li>Data is kept in the browser</li>
+        <li>Sign-in is simulated</li>
+        <li>English only</li></ul></div>
+      <div class="card"><h3>AI</h3><ul>
+        <li>The assistant is scripted and covers seven topics</li>
+        <li>A real model could state wrong things confidently</li>
+        <li>Replies can’t cite sources yet</li></ul></div>
+      <div class="card"><h3>Data</h3><ul>
+        <li>Emission and usage factors are placeholders, not verified</li>
+        <li>Everything is self-reported</li>
+        <li>No verified India-specific dataset yet</li></ul></div>
+      <div class="card"><h3>Business and research</h3><ul>
+        <li>No business model yet</li>
+        <li>One designer, about two working days for research</li>
+        <li>One participant reachable, online only</li></ul></div>
+    </div>
+
+    <h3>Design trade-offs</h3>
+    <ul>
+      <li><strong>Precision vs effort:</strong> estimates from simple inputs, so numbers may feel vague.</li>
+      <li><strong>Honesty vs motivation:</strong> estimates are always labelled, which adds visual weight.</li>
+      <li><strong>Breadth vs depth:</strong> carbon, water and waste together, which dilutes the core loop.</li>
+      <li><strong>Scripted vs real AI:</strong> a labelled demo, so trust in real AI answers can’t be tested.</li>
+    </ul>
+
+    <figure>
+      <img src="images/02-constraints.png" alt="System constraints visual" loading="lazy" />
+      <figcaption>System constraints overview</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 3 RESEARCH ============ -->
+<section id="research" class="block">
+  <div class="wrap">
+    <p class="num">03</p>
+    <h2>Research</h2>
+    <p class="lead">No user research has been done yet. This section is the plan, and it will be filled in from real sessions.</p>
+    <p><span class="tag planned">Planned</span> 0 interviews and 0 usability sessions completed so far.</p>
+
+    <div class="cols">
+      <div>
+        <h3>Research plan <span class="tag planned">Planned</span></h3>
+        <ol>
+          <li><strong>One interview and usability test</strong> with one participant, online (about 70 minutes).</li>
+          <li><strong>Competitor review</strong> of four products plus one everyday habit tracker.</li>
+          <li><strong>Effort audit:</strong> time how long it takes to log a realistic day.</li>
+          <li><strong>Secondary reading:</strong> three or four published sources.</li>
+        </ol>
+        <p class="small">With one participant, the findings are directional only. They show what one person did, not what “users” do.</p>
+      </div>
+      <div>
+        <h3>Assumptions to test first <span class="tag assumption">Assumption</span></h3>
+        <ul>
+          <li>People will log activities by hand and keep doing it.</li>
+          <li>Seeing a footprint number changes behaviour.</li>
+          <li>People can recall hours of AC use, kilometres and kWh.</li>
+          <li>Generic emission factors are good enough to motivate.</li>
+          <li>One urban-commuter profile represents the audience.</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Competitors to review <span class="tag planned">Planned</span></h3>
+    <p>These names came from a web search. They have not been used or analysed yet.</p>
+    <ul>
+      <li>CarbonWatch: an Indian government app for a personal footprint estimate</li>
+      <li>Earth Hero: survey first, then an action plan</li>
+      <li>Commons (formerly Joro): estimates from spending data</li>
+      <li>Klima or MyEarth: survey-first with a subscription, or a diary-style logger</li>
+    </ul>
+
+    <h3>Needs to check <span class="tag assumption">Assumption</span></h3>
+    <p>Understand what matters most in my life · Know it will cost little time · Understand and trust the numbers · See progress without feeling judged · Get specific, doable next steps · Stay motivated over weeks · Control my data · Advice that reflects Indian daily life.</p>
+
+    <h3>Interview questions <span class="tag planned">Planned</span></h3>
+    <ol>
+      <li>Tell me about the last time you thought about your environmental impact.</li>
+      <li>What have you done in the last few months to reduce it?</li>
+      <li>Have you tracked something regularly before? What happened to it?</li>
+      <li>What do you think contributes most to your footprint? How do you know?</li>
+      <li>How do you decide whether to believe a footprint or energy number?</li>
+      <li>Which sustainability advice have you ignored, and why?</li>
+      <li>How would you find out how much electricity your home uses in a month?</li>
+      <li>How do you feel about scores and streaks in apps?</li>
+    </ol>
+
+    <h3>Findings</h3>
+    <p><em>None yet.</em> Findings will be added here after the session, each one showing what was observed and how many people it came from.</p>
+
+    <figure>
+      <img src="images/03-research.png" alt="Research visual" loading="lazy" />
+      <figcaption>Research plan or competitor comparison</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 4 STRATEGY ============ -->
+<section id="strategy" class="block alt">
+  <div class="wrap">
+    <p class="num">04</p>
+    <h2>Strategy</h2>
+    <p class="lead">A narrower product than the one first built.</p>
+
+    <h3>Product vision <span class="tag assumption">Assumption</span></h3>
+    <blockquote>Help people in Indian cities see which everyday habits matter most for their footprint, and take one small, believable action each week.</blockquote>
+
+    <div class="cols">
+      <div>
+        <h3>Target user <span class="tag assumption">Assumption</span></h3>
+        <ul>
+          <li>Urban adult in India, about 22 to 40</li>
+          <li>Cares about sustainability, not an expert</li>
+          <li>Has a regular commute</li>
+          <li>Pays or shares an electricity bill</li>
+          <li>Comfortable with English and apps</li>
+        </ul>
+        <p class="small">Not from research. Chosen to make a small study possible.</p>
+      </div>
+      <div>
+        <h3>Core loop</h3>
+        <p class="loop"><span>Log</span> → <span>See</span> → <span>Understand</span> → <span>Act</span></p>
+        <p>Most of the first version sits in “log” and “see”. “Understand” and “act” are thinner.</p>
+      </div>
+    </div>
+
+    <h3>MVP definition <span class="tag expected">Expected</span></h3>
+    <p>The smallest product that lets a new user get a believable personal estimate in minutes, log a day with little effort, understand one insight, and commit to one action.</p>
+
+    <h3>Feature prioritisation (proposed)</h3>
+    <div class="cols cols-2">
+      <div class="card must"><h4>Must</h4><ul><li>Quick setup that ends in a first estimate</li><li>Fast logging for transport, electricity, food</li><li>One weekly insight and one action</li><li>Estimates labelled, method visible</li><li>Mobile-friendly, accessible controls</li></ul></div>
+      <div class="card should"><h4>Should</h4><ul><li>Water and waste tracking</li><li>One merged weekly plan</li><li>Repeat-last and saved commute</li><li>Weekly recap</li></ul></div>
+      <div class="card could"><h4>Could</h4><ul><li>Real AI assistant</li><li>What-if simulator</li><li>Monthly reports and export</li></ul></div>
+      <div class="card wont"><h4>Won’t (for now)</h4><ul><li>Social or community features</li><li>Offsets or a marketplace</li><li>Leaderboards</li><li>Bank or UPI links</li></ul></div>
+    </div>
+    <p class="small">A proposal to test. Several of these features already exist in the first version, and the question is whether they belong in an MVP.</p>
+
+    <figure>
+      <img src="images/04-strategy.png" alt="Strategy visual" loading="lazy" />
+      <figcaption>Strategy overview</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5 EXPLORATION ============ -->
+<section id="exploration" class="block">
+  <div class="wrap">
+    <p class="num">05</p>
+    <h2>Exploration</h2>
+    <p class="lead">Different ways to solve the two biggest problems: a setup that ends without value, and a dashboard that shows too much. These are ideas, not tested designs.</p>
+
+    <h3>Onboarding: three approaches</h3>
+    <div class="cols cols-3">
+      <div class="card"><h4>A. Five-step setup <span class="tag built">Built</span></h4><p>Profile, location, lifestyle, interests, baseline. Rich data, but a long wait and answers go unused.</p></div>
+      <div class="card"><h4>B. Estimate first</h4><p>Three questions, then an instant rough week. Fast, but the estimate may feel too rough.</p></div>
+      <div class="card"><h4>C. Log first</h4><p>Start from “what did you do today?” and set up later. Lowest effort, but the dashboard is nearly empty at first.</p></div>
+    </div>
+    <p class="small">The current lean is towards B, because it answers the biggest problem found. It needs testing against A.</p>
+
+    <h3>Dashboard: three layouts</h3>
+    <ul>
+      <li><strong>Dense overview</strong> (built): about twelve cards plus quick actions.</li>
+      <li><strong>Focus:</strong> one insight, one next action and a week strip.</li>
+      <li><strong>Journal:</strong> today’s log first, with small totals above.</li>
+    </ul>
+
+    <div class="pair">
+      <figure><img src="images/05-exploration-a.png" alt="Onboarding sketches" loading="lazy" /><figcaption>Onboarding sketches</figcaption></figure>
+      <figure><img src="images/05-exploration-b.png" alt="Dashboard sketches" loading="lazy" /><figcaption>Dashboard sketches</figcaption></figure>
+    </div>
+
+    <h3>Iterations</h3>
+    <ul>
+      <li><strong>v0 (built):</strong> the first working version.</li>
+      <li><strong>v1 (planned):</strong> onboarding that pays off, sample data separated, one plan concept, plain language.</li>
+      <li><strong>v2 (not defined):</strong> decided after testing, because that evidence doesn’t exist yet.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ 6 DESIGN SYSTEM ============ -->
+<section id="design-system" class="block alt">
+  <div class="wrap">
+    <p class="num">06</p>
+    <h2>Design system</h2>
+    <p class="lead">A calm, honest visual language for numbers people may not fully trust.</p>
+
+    <h3>Principles</h3>
+    <ol>
+      <li><strong>Honest by default.</strong> Label estimates and sample data. <span class="tag built">Met</span></li>
+      <li><strong>Calm, not guilty.</strong> Reward progress, avoid blame. <span class="tag review">Partly</span></li>
+      <li><strong>One clear next step.</strong> <span class="tag assumption">Not yet</span></li>
+      <li><strong>Respect the effort budget.</strong> Every entry should take seconds. <span class="tag assumption">Not yet</span></li>
+      <li><strong>Accessible from the start.</strong> <span class="tag review">Partly</span></li>
+    </ol>
+
+    <h3>Colour</h3>
+    <ul class="swatches">
+      <li><i style="background:#FAFAF5"></i>Page<br><small>#FAFAF5</small></li>
+      <li><i style="background:#FFFFFF"></i>Surface<br><small>#FFFFFF</small></li>
+      <li><i style="background:#193329"></i>Ink<br><small>#193329</small></li>
+      <li><i style="background:#16783C"></i>Brand green<br><small>#16783C</small></li>
+      <li><i style="background:#EDF7E6"></i>Brand tint<br><small>#EDF7E6</small></li>
+      <li><i style="background:#84CC16"></i>Accent<br><small>#84CC16</small></li>
+      <li><i style="background:#2F80C8"></i>Water<br><small>#2F80C8</small></li>
+      <li><i style="background:#F5A524"></i>Electricity<br><small>#F5A524</small></li>
+      <li><i style="background:#8A6BC2"></i>Food<br><small>#8A6BC2</small></li>
+      <li><i style="background:#D9585F"></i>Shopping<br><small>#D9585F</small></li>
+      <li><i style="background:#3FA796"></i>Waste<br><small>#3FA796</small></li>
+    </ul>
+
+    <div class="cols">
+      <div>
+        <h3>Typography</h3>
+        <ul>
+          <li><strong>Junge</strong> (serif) for display headlines</li>
+          <li><strong>Inter</strong> for all interface text</li>
+          <li>18 named styles: Display, Heading, Body, Label, Caption, Overline, Metric</li>
+          <li>Minimum text size 12 px</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Spacing, shape, components</h3>
+        <ul>
+          <li>Spacing: 2, 4, 8, 12, 16, 20, 24, 32, 40, 48, 64, 96 px</li>
+          <li>Corner radius: 4, 6, 10, 12, 20 px</li>
+          <li>Buttons (4 types, 3 sizes), form fields, chips, badges, tabs, cards, charts</li>
+          <li>Text and background pairs checked for WCAG AA contrast</li>
+        </ul>
+      </div>
+    </div>
+
+    <h3>Known inconsistencies <span class="tag review">Product review</span></h3>
+    <ul>
+      <li>Spacing isn’t tokenised in code: 29 values sit off the scale.</li>
+      <li>21 colours are hard-coded instead of using tokens.</li>
+      <li>The Figma file has no Sidebar, Activity row, Insight card or Action item.</li>
+      <li>No documented grid or layout rules.</li>
+    </ul>
+
+    <div class="pair">
+      <figure><img src="images/06-design-system-colour.png" alt="Colour and typography" loading="lazy" /><figcaption>Colour and typography</figcaption></figure>
+      <figure><img src="images/06-design-system-components.png" alt="Components" loading="lazy" /><figcaption>Components</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7 KEY EXPERIENCES AND FLOWS ============ -->
+<section id="flows" class="block">
+  <div class="wrap">
+    <p class="num">07</p>
+    <h2>Key experiences and flows</h2>
+    <p class="lead">Six journeys carry the product. The friction listed is predicted from the product review, and has not been seen with real users.</p>
+
+    <div class="flow"><h3>Onboarding</h3>
+      <p class="steps">Landing → Sign up → Profile and city → Lifestyle and interests → Baseline → Choose sample or empty → Dashboard</p>
+      <p class="friction">Possible friction: answers aren’t used, and there is no personal estimate at the end.</p></div>
+
+    <div class="flow"><h3>Logging an activity</h3>
+      <p class="steps">Tap Log → Pick a category → Fill one to three fields → See the impact preview → Save → Totals update (with Undo)</p>
+      <p class="friction">Possible friction: no “repeat last”, and many entries a day.</p></div>
+
+    <div class="flow"><h3>Carbon, water and waste tracking</h3>
+      <p class="steps">Open a tracker → Pick a tab → Read the summary → Change the chart range → Check the breakdown → Search history → Adjust the weekly limit</p>
+      <p class="friction">Possible friction: Water and Waste are hard to find on mobile.</p></div>
+
+    <div class="flow"><h3>AI sustainability assistant</h3>
+      <p class="steps">Insight or assistant → Ask a question → Labelled demo reply → Suggested action → Add to plan</p>
+      <p class="friction">Possible friction: replies are scripted and cover seven topics.</p></div>
+
+    <div class="flow"><h3>Action planner</h3>
+      <p class="steps">Open planner → See the week → Add an action → Assign a day → Tick it off → Progress updates</p>
+      <p class="friction">Possible friction: overlaps with the Goals screen.</p></div>
+
+    <div class="flow"><h3>Insight to action</h3>
+      <p class="steps">Dashboard insight → Read the numbers it’s based on → Recommendation → Add to plan</p>
+      <p class="friction">Possible friction: “CO₂e” isn’t explained in the app.</p></div>
+
+    <div class="pair">
+      <figure><img src="images/07-flows-1.png" alt="User flow diagram" loading="lazy" /><figcaption>User flow</figcaption></figure>
+      <figure><img src="images/07-flows-2.png" alt="Key screens" loading="lazy" /><figcaption>Key screens</figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8 IMPACT ============ -->
+<section id="impact" class="block alt">
+  <div class="wrap">
+    <p class="num">08</p>
+    <h2>Impact</h2>
+    <p class="lead">What success would look like and how it would be measured. Nothing has been measured yet, so there are no results here.</p>
+
+    <h3>Expected outcomes <span class="tag expected">Expected</span></h3>
+    <ul>
+      <li>If a first estimate appears during setup, more new users should reach the dashboard with a number that is theirs.</li>
+      <li>If logging has shortcuts, people should keep logging after the first week.</li>
+      <li>If each estimate shows its basis, understanding and trust should improve.</li>
+      <li>If goals and the planner become one idea, people should be able to explain how it works.</li>
+    </ul>
+
+    <h3>How it would be measured</h3>
+    <ul>
+      <li><strong>Time to a first personal insight</strong> (usability test)</li>
+      <li><strong>Seconds per entry and ease rating from 1 to 7</strong> (effort audit, usability test)</li>
+      <li><strong>Understanding of the numbers</strong>: can the person explain them in their own words?</li>
+      <li><strong>Action taken</strong> after an insight (observation)</li>
+      <li><strong>Return after day 7 and day 30</strong> (needs a live product)</li>
+    </ul>
+    <p class="small">Targets are set before each test, and results are reported with the number of people they came from.</p>
+
+    <h3>Proposed north-star metric <span class="tag assumption">Assumption</span></h3>
+    <p>Weekly active loggers who complete at least one action.</p>
+
+    <h3>What this case study will not claim</h3>
+    <ul>
+      <li>A reduction in anyone’s footprint</li>
+      <li>Percentages from a sample of one</li>
+      <li>That users prefer anything yet</li>
+      <li>That the estimates are accurate</li>
+    </ul>
+
+    <figure>
+      <img src="images/08-impact.png" alt="Impact visual" loading="lazy" />
+      <figcaption>Impact and measurement plan</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 9 SOLUTION ============ -->
+<section id="solution" class="block">
+  <div class="wrap">
+    <p class="num">09</p>
+    <h2>Solution</h2>
+    <p class="lead">The product as it stands. A first version to learn from, not a finished answer.</p>
+
+    <p class="links">
+      <a class="btn" href="https://earthpulse-ai-self.vercel.app/" target="_blank" rel="noopener">Open the interactive prototype</a>
+    </p>
+    <p class="small">The prototype is the live product. It opens with clearly labelled sample data.</p>
+
+    <div class="pair">
+      <figure><img src="images/09-solution-dashboard.png" alt="Dashboard screen" loading="lazy" /><figcaption>Dashboard</figcaption></figure>
+      <figure><img src="images/09-solution-mobile.png" alt="Mobile screens" loading="lazy" /><figcaption>Mobile screens</figcaption></figure>
+    </div>
+
+    <h3>Design decisions</h3>
+    <ul>
+      <li><strong>Estimates are always labelled</strong>, so placeholder numbers never look like measurements. <span class="tag built">Built</span></li>
+      <li><strong>Goal bars show pace</strong>: how much is used against how much of the week has passed. <span class="tag built">Built</span></li>
+      <li><strong>An impact preview before saving, plus Undo</strong>, instead of confirmation dialogs. <span class="tag built">Built</span></li>
+      <li><strong>One colour and icon per category</strong>, the same in charts, rows and forms. <span class="tag built">Built</span></li>
+      <li><strong>A labelled demo assistant</strong>, so it never poses as a live AI. <span class="tag built">Built</span></li>
+      <li><strong>Five-step onboarding.</strong> Flagged for redesign because the answers go unused. <span class="tag review">Product review</span></li>
+    </ul>
+    <p class="small">“Built” means it exists. None of these decisions has been validated with users yet.</p>
+
+    <div class="cols">
+      <div>
+        <h3>Known problems</h3>
+        <ul>
+          <li>Onboarding answers aren’t used</li>
+          <li>No personal estimate after setup</li>
+          <li>Sample and real data are mixed</li>
+          <li>Heavy manual logging</li>
+          <li>Unverified emission factors, scripted AI, no real accounts, no usability data</li>
+        </ul>
+      </div>
+      <div>
+        <h3>What happens next <span class="tag planned">Planned</span></h3>
+        <ol>
+          <li>Run the one-participant session and the effort audit</li>
+          <li>Redesign onboarding around a first personal estimate</li>
+          <li>Merge goals, planner and recommendations</li>
+          <li>Separate sample data from a user’s own entries</li>
+          <li>Re-test the same tasks and compare</li>
+        </ol>
+      </div>
+    </div>
+
+    <h3>What building it taught</h3>
+    <ul>
+      <li>Automated tests caught a form that lost focus on every keystroke, which review had missed.</li>
+      <li>A self-review found onboarding promising a personalised dashboard that never happened.</li>
+      <li>Honest labels take space, so where they sit is a design decision.</li>
+    </ul>
+    <p class="small">These are lessons from the build and the review, not from users.</p>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <p>EarthPulse AI case study. Figures shown in the product are sample data and illustrative estimates, not verified measurements.</p>
+  </div>
+</footer>
+
+</body>
+</html>

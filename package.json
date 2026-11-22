@@ -1,0 +1,9 @@
+{
+  "name": "earthpulse-ai-case-study",
+  "private": true,
+  "version": "1.0.0",
+  "description": "EarthPulse AI UX/UI case study (static site)",
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}
